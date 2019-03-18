@@ -1,2 +1,1 @@
-# senz-test
-Challenge task for Senz
+# admin-panel
