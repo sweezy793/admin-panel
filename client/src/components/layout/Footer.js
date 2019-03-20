@@ -9,8 +9,11 @@ const fstyle = {
 
 export default function Footer() {
   return (
-    <footer style={fstyle} className="bg-dark text-white mt-5 p-4 text-center">
-      Copyright &copy; {new Date().getFullYear()} Sarthak Sarangi
+    <footer
+      style={fstyle}
+      className="bg-primary text-white mt-5 p-4 text-center"
+    >
+      Sarthak Sarangi @ 2019
     </footer>
   );
 }

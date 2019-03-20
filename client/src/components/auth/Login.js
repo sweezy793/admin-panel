@@ -58,11 +58,13 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <div className="card mt-4">
-                <div className="card-header text-white bg-dark">
-                  <h1 className="display-4 text-center">Log In</h1>
+                <div className="card-header bg-primary">
+                  <h1 className="display-4 text-white text-center">Log In</h1>
                 </div>
                 <div className="card-body bg-light">
-                  <p className="lead text-center">Sign in to your account</p>
+                  <p className="lead text-center text-dark">
+                    Sign in to your account
+                  </p>
                   <form onSubmit={this.onSubmit}>
                     <TextFieldGroup
                       placeholder="Email address"
@@ -82,7 +84,8 @@ class Login extends Component {
                     />
                     <input
                       type="submit"
-                      className="btn btn-info btn-block mt-4"
+                      className="btn btn-success btn-block mt-4"
+                      value="Login"
                     />
                   </form>
                 </div>

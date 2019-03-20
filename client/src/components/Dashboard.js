@@ -11,8 +11,8 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              Welcome {user.name}
+              <h1 className="display-4 text-white">Dashboard</h1>
+              <h3 className="text-white mt-4">Welcome, {user.name}!</h3>
             </div>
           </div>
         </div>

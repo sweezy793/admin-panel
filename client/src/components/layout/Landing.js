@@ -16,16 +16,12 @@ class Landing extends Component {
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mt-5 ">Admin Panel</h1>
-
-                <hr />
-                <Link to="/register" className="btn btn-lg btn-primary mr-3">
-                  Sign Up
-                </Link>
-                <Link to="/login" className="btn btn-lg btn-info">
-                  Login
-                </Link>
+              <div className="col-md-6 offset-md-3 text-center mt-5">
+                <div className="card text-white bg-primary mt-5">
+                  <div className="card-body">
+                    <h1 className="display-4 text-white">Admin Panel</h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

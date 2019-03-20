@@ -59,11 +59,13 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <div className="card mt-4">
-                <div className="card-header text-white bg-dark">
-                  <h1 className="display-4 text-center">Sign Up</h1>
+                <div className="card-header bg-primary">
+                  <h1 className="display-4 text-white text-center">Sign Up</h1>
                 </div>
                 <div className="card-body bg-light">
-                  <p className="lead text-center">Create a new account</p>
+                  <p className="lead text-dark text-center">
+                    Create a new account
+                  </p>
                   <form noValidate onSubmit={this.onSubmit}>
                     <TextFieldGroup
                       placeholder="Name"
@@ -100,7 +102,8 @@ class Register extends Component {
                     />
                     <input
                       type="submit"
-                      className="btn btn-primary btn-block mt-4"
+                      className="btn btn-danger btn-block mt-4"
+                      value="Sign Up"
                     />
                   </form>
                 </div>
