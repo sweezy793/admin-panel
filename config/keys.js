@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: "mongodb://temp:pass123@ds139949.mlab.com:39949/sample",
+  mongoURI: "mongodb://localhost:27017/admin_panel",
   secretOrKey: "admin"
 };

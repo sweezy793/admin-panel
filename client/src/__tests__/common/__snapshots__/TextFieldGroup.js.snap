@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextFieldGroup/> renders without crashing 1`] = `
+<div
+  className="form-group"
+>
+  <input
+    className="form-control form-control-lg"
+    name=""
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;

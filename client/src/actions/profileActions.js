@@ -1,4 +1,4 @@
-import { PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./actions";
+import { PROFILE_LOADING, CLEAR_PRESENT_PROFILE } from "./actions";
 
 //Profile loading action for showing spinner while loding
 export const setProfileLoading = () => {
@@ -10,6 +10,6 @@ export const setProfileLoading = () => {
 //Clear Profile
 export const clearCurrentProfile = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE
+    type: CLEAR_PRESENT_PROFILE
   };
 };

@@ -7,7 +7,7 @@ import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Navbar extends Component {
   onLogoutClick(e) {
-    e.preventDefault();
+    e.preventDefault(); //This prevents default button click action
     this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
@@ -34,7 +34,7 @@ class Navbar extends Component {
         <li className="nav-item">
           <a
             href=""
-            onClick={this.onLogoutClick.bind(this)}
+            onClick={this.onLogoutClick.bind(this)} //Binding onClick to defined function
             className="nav-link"
           >
             <img

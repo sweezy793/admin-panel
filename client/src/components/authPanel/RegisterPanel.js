@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { userRegister } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
-class Login extends Component {
+class RegisterPanel extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
       email: "",
       password: "",
+      password2: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -23,10 +26,6 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
-
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -41,39 +40,50 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const userData = {
+    const newUser = {
+      name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      password2: this.state.password2
     };
 
-    this.props.loginUser(userData);
+    this.props.userRegister(newUser, this.props.history);
   }
 
   render() {
     const { errors } = this.state;
 
     return (
-      <div className="login">
+      <div className="register">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <div className="card mt-4">
                 <div className="card-header bg-primary">
-                  <h1 className="display-4 text-white text-center">Log In</h1>
+                  <h1 className="display-4 text-white text-center">Sign Up</h1>
                 </div>
                 <div className="card-body bg-light">
-                  <p className="lead text-center text-dark">
-                    Sign in to your account
+                  <p className="lead text-dark text-center">
+                    Create a new account
                   </p>
-                  <form onSubmit={this.onSubmit}>
+                  <form noValidate onSubmit={this.onSubmit}>
                     <TextFieldGroup
-                      placeholder="Email address"
+                      placeholder="Name"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                      error={errors.name}
+                    />
+
+                    <TextFieldGroup
+                      placeholder="Email"
                       name="email"
                       type="email"
                       value={this.state.email}
                       onChange={this.onChange}
                       error={errors.email}
                     />
+
                     <TextFieldGroup
                       placeholder="Password"
                       name="password"
@@ -82,10 +92,18 @@ class Login extends Component {
                       onChange={this.onChange}
                       error={errors.password}
                     />
+                    <TextFieldGroup
+                      placeholder="Confirm Password"
+                      name="password2"
+                      type="password"
+                      value={this.state.password2}
+                      onChange={this.onChange}
+                      error={errors.password2}
+                    />
                     <input
                       type="submit"
-                      className="btn btn-success btn-block mt-4"
-                      value="Login"
+                      className="btn btn-danger btn-block mt-4"
+                      value="Sign Up"
                     />
                   </form>
                 </div>
@@ -98,8 +116,8 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
+RegisterPanel.propTypes = {
+  userRegister: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -111,5 +129,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser }
-)(Login);
+  { userRegister }
+)(withRouter(RegisterPanel));

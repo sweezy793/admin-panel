@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer/> renders without crashing 1`] = `
+<footer
+  className="bg-primary text-white mt-5 p-4 text-center"
+  style={
+    Object {
+      "bottom": "0",
+      "left": "0",
+      "position": "absolute",
+      "right": "0",
+    }
+  }
+>
+  Sarthak Sarangi @ 2019
+</footer>
+`;

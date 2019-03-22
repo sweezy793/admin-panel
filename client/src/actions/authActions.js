@@ -1,12 +1,13 @@
 import { GET_ERRORS } from "././actions";
-import { SET_CURRENT_USER } from "././actions";
+import { PRESENT_USER } from "././actions";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
 
-export const registerUser = (userData, history) => dispatch => {
+//User Registration action
+export const userRegister = (userInfo, history) => dispatch => {
   axios
-    .post("/api/users/register", userData)
+    .post("/api/users/register", userInfo)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
@@ -16,9 +17,10 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
-export const loginUser = userData => dispatch => {
+//User login action
+export const userLogin = userInfo => dispatch => {
   axios
-    .post("/api/users/login", userData)
+    .post("/api/users/login", userInfo)
     .then(res => {
       //Save token to local storage for verification
       const { token } = res.data;
@@ -28,7 +30,7 @@ export const loginUser = userData => dispatch => {
       //Decode token to get user data
       const decoded = jwt_decode(token);
       //Set current user
-      dispatch(setCurrentUser(decoded));
+      dispatch(setPresentUser(decoded));
     })
     .catch(err =>
       dispatch({
@@ -39,19 +41,17 @@ export const loginUser = userData => dispatch => {
 };
 
 //set logged in user
-export const setCurrentUser = decoded => {
+export const setPresentUser = decoded => {
   return {
-    type: SET_CURRENT_USER,
+    type: PRESENT_USER,
     payload: decoded
   };
 };
 
 //Log user out
 export const logoutUser = () => dispatch => {
-  //Remove token from local storage
-  localStorage.removeItem("jwtToken");
-  //Remove auth header for future requests
-  setAuthToken(false); //Which in turn deletes authorization ie see else part in setAuthToken.js
-  //Set current user to {} which will set isAuthenticated to false
-  dispatch(setCurrentUser({}));
+  localStorage.removeItem("jwtToken"); //Remove token in use
+  setAuthToken(false); //Which in turn deletes authorization, ie see else part in setAuthToken.js
+  //Current user then becomes empty and isAuthorisation check fails
+  dispatch(setPresentUser({}));
 };
