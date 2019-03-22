@@ -8,8 +8,8 @@ const keys = require("../../config/keys");
 
 const router = express.Router();
 
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
+const registerInputValidate = require("../../inputFieldValidation/registerValidation");
+const loginInputValidate = require("../../inputFieldValidation/loginValidation");
 
 const User = require("../../models/Users");
 
@@ -18,15 +18,16 @@ const User = require("../../models/Users");
 // @access Public
 
 router.post("/register", (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = registerInputValidate(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
+  //Sending a promise if user exists or not
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      errors.email = "Email already exists";
+      errors.email = "User already exists";
       return res.status(400).json(errors); // sending error status code
     } else {
       //Used gravatar for providing unique avatar to all users
@@ -66,7 +67,7 @@ router.post("/register", (req, res) => {
 // @access Public
 
 router.post("/login", (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+  const { errors, isValid } = loginInputValidate(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
@@ -98,33 +99,17 @@ router.post("/login", (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer " + token //Token value
+                token: token //Token value
               });
             }
           );
         } else {
           //if password not matched then send error code and message
-          errors.password = "Password Incorrect";
+          errors.password = "Wrong Password";
           return res.status(400).json(errors);
         }
       });
   });
 });
-
-// @route GET api/users/register
-// @desc Register user
-// @access Public
-
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email
-    });
-  }
-);
 
 module.exports = router;

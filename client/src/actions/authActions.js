@@ -1,5 +1,5 @@
-import { GET_ERRORS } from "./types";
-import { SET_CURRENT_USER } from "./types";
+import { GET_ERRORS } from "././actions";
+import { SET_CURRENT_USER } from "././actions";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
