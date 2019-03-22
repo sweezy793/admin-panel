@@ -8,41 +8,28 @@ img {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
+  margin-top: -25px;
+  margin-bottom: -60px;
 }
 
 .landing-inner {
-  padding-top: 80px;
+  padding-top: 100px;
 }
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(12, 24, 53, 0.644);
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
 
-.card-form {
-  opacity: 0.9;
-}
-
-.latest-profiles-img {
-  width: 40px;
-  height: 40px;
-}
-
 .form-control::placeholder {
-  color: #bbb !important;
+  color: rgb(122, 111, 111) !important;
 }
 
 body {
-  font-family: "Karla", sans-serif;
   min-height: 100vh;
   position: relative;
-  margin: 0;
 }
 
 #root {
